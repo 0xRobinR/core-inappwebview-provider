@@ -2,5 +2,39 @@
   "name": "inappwebview-provider",
   "version": "1.0.0",
   "dependencies": {
+    "@metamask/eth-sig-util": "^5.0.2",
+    "@robincore/flutter-dapp-provider": "^1.1.2",
+    "isutf8": "^4.0.0"
+  },
+  "main": "build/index.js",
+  "description": "a javascript ethereum provider injector used as an interface between wallet and dApps. [for flutter]",
+  "author": "robin rajput <explain.this@robinrajput.com> (https://robinrajput.com)",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robin-360core/core-inappwebview-provider.git"
+  },
+  "homepage": "https://github.com/robin-360core/core-inappwebview-provider#readme",
+  "files": [
+    "build/index.js"
+  ],
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/node": "^14.11.2",
+    "gts": "^3.1.1",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "yarn.cmd run compile",
+    "pretest": "yarn.cmd run compile",
+    "posttest": "yarn.cmd run lint"
   }
 }
