@@ -1,5 +1,1 @@
-import {InAppProvider} from "./InAppWebviewProvider/InAppProvider";
-
-export {
-  InAppProvider
-}
+export * from './InAppWebviewProvider/InAppProvider';
