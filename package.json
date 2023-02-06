@@ -1,6 +1,6 @@
 {
   "name": "@robincore/inappwebview-provider",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
     "@metamask/eth-sig-util": "^5.0.2",
@@ -44,6 +44,7 @@
     "compile": "tsc",
     "fix": "gts fix",
     "test": "jest.cmd",
+    "prepublish": "yarn build",
     "build": "browserify src/index.ts -p [ tsify --noImplicitAny] | uglifyjs.cmd > build/inappwebview-provider.js"
   },
   "bugs": {
