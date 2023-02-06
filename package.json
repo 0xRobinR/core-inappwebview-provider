@@ -1,6 +1,6 @@
 {
   "name": "@robincore/inappwebview-provider",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
     "@metamask/eth-sig-util": "^5.0.2",
