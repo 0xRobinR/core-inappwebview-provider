@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/robin-360core/core-inappwebview-provider#readme",
   "files": [
-    "build/index.js"
+    "build/inappwebview-provider.js",
+    "src/"
   ],
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",
