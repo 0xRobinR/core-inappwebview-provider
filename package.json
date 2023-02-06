@@ -1,6 +1,6 @@
 {
-  "name": "inappwebview-provider",
-  "version": "1.1.0",
+  "name": "@robincore/inappwebview-provider",
+  "version": "1.1.1",
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
     "@metamask/eth-sig-util": "^5.0.2",
@@ -44,6 +44,22 @@
     "compile": "tsc",
     "fix": "gts fix",
     "test": "jest.cmd",
-    "build": "browserify src/index.ts -p [ tsify --noImplicitAny] > build/inappwebview-provider.js"
-  }
+    "build": "browserify src/index.ts -p [ tsify --noImplicitAny] | uglifyjs.cmd > build/inappwebview-provider.js"
+  },
+  "bugs": {
+    "url": "https://github.com/robin-360core/core-inappwebview-provider/issues"
+  },
+  "keywords": [
+    "flutter",
+    "inappwebview",
+    "provider",
+    "ethereum",
+    "ethereum",
+    "provider",
+    "flutter",
+    "web3",
+    "flutter",
+    "web3",
+    "injector"
+  ]
 }
