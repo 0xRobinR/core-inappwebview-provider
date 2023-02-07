@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.69% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/65</span>
+                <span class='fraction'>18/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">2.7% </span>
+                <span class="strong">2.63% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/74</span>
+                <span class='fraction'>2/76</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">31.25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/16</span>
+                <span class='fraction'>5/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.69% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/65</span>
+                <span class='fraction'>18/60</span>
             </div>
         
             
@@ -250,18 +250,13 @@
 <a name='L185'></a><a href='#L185'>185</a>
 <a name='L186'></a><a href='#L186'>186</a>
 <a name='L187'></a><a href='#L187'>187</a>
-<a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a>
-<a name='L192'></a><a href='#L192'>192</a>
-<a name='L193'></a><a href='#L193'>193</a>
-<a name='L194'></a><a href='#L194'>194</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L188'></a><a href='#L188'>188</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -368,14 +363,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -450,12 +438,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {CoreDappBridge, ISetup} from '@robincore/flutter-dapp-provider';
-import {IPayload} from '@robincore/flutter-dapp-provider/build/bridge/IParams';
+import {IParams, IPayload} from '@robincore/flutter-dapp-provider/build/bridge/IParams';
 import RPCall from '@robincore/flutter-dapp-provider/build/rpc/RPCall';
 import {CoreUtils} from '@robincore/flutter-dapp-provider/build/core-utils';
 import {SignTypedDataVersion, TypedDataUtils} from '@metamask/eth-sig-util';
-import isUtf8 from 'isutf8';
+// import isUtf8 from 'isutf8';
 import {IInAppWebview} from "./iInAppWebview";
+import isUtf8 from "isutf8";
 &nbsp;
 type funcType&lt;T&gt; = T | undefined;
 &nbsp;
@@ -504,7 +493,7 @@ export class InAppProvider extends CoreDappBridge implements IInAppWebview {
 <span class="branch-2 cbranch-no" title="branch not covered" >        case 'eth_chainId':</span>
 <span class="cstat-no" title="statement not covered" >          return this.sendResponse(payload.id, this.eth_chainId(), cb);</span>
 <span class="branch-3 cbranch-no" title="branch not covered" >        case 'eth_sign':</span>
-<span class="cstat-no" title="statement not covered" >          return this.ethSign(payload.params);</span>
+<span class="cstat-no" title="statement not covered" >          return this.eth_sign(payload.params ?? []);</span>
 <span class="branch-4 cbranch-no" title="branch not covered" >        case 'personal_sign':</span>
           // @ts-ignore
 <span class="cstat-no" title="statement not covered" >          return this.personal_sign(payload);</span>
@@ -560,15 +549,8 @@ export class InAppProvider extends CoreDappBridge implements IInAppWebview {
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ethSign(</span>payload: Record&lt;string, unknown&gt; | unknown[] | undefined) {
-    // @ts-ignore
-    const buffer = <span class="cstat-no" title="statement not covered" >CoreUtils.convertToBytes(payload[1]);</span>
-    const hex = <span class="cstat-no" title="statement not covered" >CoreUtils.payloadInHex(buffer);</span>
-<span class="cstat-no" title="statement not covered" >    if (isUtf8(buffer)) {</span>
-<span class="cstat-no" title="statement not covered" >      this._onMessage('signPersonalMessage', {data: hex});</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      this._onMessage('signMessage', {data: hex});</span>
-    }
+  eth_sign(payload: IParams) {
+    super.eth_sign(payload);
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  personal_sign(</span>payload: Record&lt;string, unknown&gt; | unknown[] | undefined) {
@@ -649,7 +631,7 @@ export class InAppProvider extends CoreDappBridge implements IInAppWebview {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-06T05:21:29.226Z
+                at 2023-02-07T15:05:51.238Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

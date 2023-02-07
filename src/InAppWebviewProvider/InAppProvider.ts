@@ -1,10 +1,11 @@
 import {CoreDappBridge, ISetup} from '@robincore/flutter-dapp-provider';
-import {IPayload} from '@robincore/flutter-dapp-provider/build/bridge/IParams';
+import {IParams, IPayload} from '@robincore/flutter-dapp-provider/build/bridge/IParams';
 import RPCall from '@robincore/flutter-dapp-provider/build/rpc/RPCall';
 import {CoreUtils} from '@robincore/flutter-dapp-provider/build/core-utils';
 import {SignTypedDataVersion, TypedDataUtils} from '@metamask/eth-sig-util';
-import isUtf8 from 'isutf8';
+// import isUtf8 from 'isutf8';
 import {IInAppWebview} from "./iInAppWebview";
+import isUtf8 from "isutf8";
 
 type funcType<T> = T | undefined;
 
@@ -53,7 +54,7 @@ export class InAppProvider extends CoreDappBridge implements IInAppWebview {
         case 'eth_chainId':
           return this.sendResponse(payload.id, this.eth_chainId(), cb);
         case 'eth_sign':
-          return this.ethSign(payload.params);
+          return this.eth_sign(payload.params ?? []);
         case 'personal_sign':
           // @ts-ignore
           return this.personal_sign(payload);
@@ -109,15 +110,8 @@ export class InAppProvider extends CoreDappBridge implements IInAppWebview {
     }
   }
 
-  ethSign(payload: Record<string, unknown> | unknown[] | undefined) {
-    // @ts-ignore
-    const buffer = CoreUtils.convertToBytes(payload[1]);
-    const hex = CoreUtils.payloadInHex(buffer);
-    if (isUtf8(buffer)) {
-      this._onMessage('signPersonalMessage', {data: hex});
-    } else {
-      this._onMessage('signMessage', {data: hex});
-    }
+  eth_sign(payload: IParams) {
+    super.eth_sign(payload);
   }
 
   personal_sign(payload: Record<string, unknown> | unknown[] | undefined) {

@@ -17,6 +17,7 @@ module.exports = {
   projects: [
     {
       ...tsConfig,
+      testEnvironment: 'jsdom',
       displayName: 'InAppProvider',
       testMatch: ['**/*.test.ts'],
     },
