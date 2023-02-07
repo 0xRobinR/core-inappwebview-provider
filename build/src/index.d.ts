@@ -1,1 +1,6 @@
-export * from './InAppWebviewProvider/InAppProvider';
+declare global {
+    interface Window {
+        inAppProvider: any;
+    }
+}
+export {};
